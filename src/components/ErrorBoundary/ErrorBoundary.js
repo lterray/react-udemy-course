@@ -7,6 +7,8 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    // if it would use the old state then we should use this format:
+    // this.setState((prevState, props) => { ... return newState; });
     this.setState({hasError: true, errorMessage: error});
   }
 

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import classes from './App.css';
 
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-import Person from "./Person/Person";
-
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 const app = props => {
   const [persons, setPersons] = useState([
@@ -36,44 +35,18 @@ const app = props => {
     setShowPersons(!showPersons);
   };
 
-  let buttonClass = '';
-
   let personsContent = null;
   if (showPersons) {
-    buttonClass = classes.danger;
-
-    personsContent = (
-      persons.map((person, index) => {
-        return <ErrorBoundary>
-          <Person
-            key={person.id}
-            personId={person.id}
-            name={person.name}
-            age={person.age}
-            click={() => deletePersonHandler(index)}
-            changed={nameChangedHandler}>
-            {person.hobby}
-          </Person>
-        </ErrorBoundary>
-      })
-    );
-  }
-
-  const classesWhenTooFewElements = [];
-  if (persons.length <= 2) {
-    classesWhenTooFewElements.push(classes.danger);
-  }
-  if (persons.length <= 1) {
-    classesWhenTooFewElements.push(classes.highlighted);
+    personsContent = <Persons
+                      persons={persons}
+                      click={deletePersonHandler}
+                      changed={nameChangedHandler}>
+                     </Persons>;
   }
 
   return (
     <div className={classes.App}>
-      <h1>Hi I'm a react app.</h1>
-      <p className={classesWhenTooFewElements.join(' ')}>This is really working!</p>
-      <button onClick={togglePersonsHandler} className={buttonClass}>
-        Toggle persons
-      </button>
+      <Cockpit persons={persons} showPersons={showPersons} click={togglePersonsHandler}></Cockpit>
       {personsContent}
     </div>
   );

@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.danger {
+  color: red;
+}
+
+.highlighted {
+  font-weight: bold;
+}
+
+.App button {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.App button:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+.App button.danger {
+  background-color: red;
+  color: white;
+}
+
+.App button.danger:hover {
+  background-color: salmon;
+}
